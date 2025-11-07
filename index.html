@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudio Color | Sitio en construcción</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #d62828, #f77f00);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      animation: fadeInUp 1.2s ease-out;
+    }
+    img {
+      max-width: 180px;
+      margin-bottom: 25px;
+      animation: zoomIn 1.2s ease-out;
+    }
+    h1 {
+      font-size: 1.8em;
+      color: #d62828;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.05em;
+      color: #444;
+      margin-bottom: 20px;
+    }
+    a {
+      color: #f77f00;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="logo.png" alt="Logo Estudio Color">
+    <h1>Estamos trabajando en algo nuevo</h1>
+    <p>Muy pronto vas a poder descubrir el nuevo <strong>Estudio Color</strong>.</p>
+    <p>¿Necesitás asistencia? <br>
+    Escribinos a <a href="mailto:hola@estudiocolor.com.ar">hola@estudiocolor.com.ar</a></p>
+  </div>
+</body>
+</html>
