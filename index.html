@@ -1,71 +1,952 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estudio Color | Sitio en construcción</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #b8f2e6, #cdb4db);
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #333;
-    }
-    .card {
-      background: #ffffffcc;
-      border-radius: 20px;
-      padding: 40px;
-      max-width: 420px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      animation: fadeInUp 1.2s ease-out;
-      backdrop-filter: blur(10px);
-    }
-    img {
-      max-width: 180px;
-      margin-bottom: 25px;
-      animation: zoomIn 1.2s ease-out;
-    }
-    h1 {
-      font-size: 1.8em;
-      color: #7d4bc4;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 1.05em;
-      color: #444;
-      margin-bottom: 20px;
-    }
-    a {
-      color: #4eb98f;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes zoomIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Estudio Color · Diseño Gráfico + Impresión Digital · Castelar</title>
+<meta name="description" content="Estudio Color — Gráfica y diseño gráfico en Castelar, Buenos Aires. Empresa familiar con atención personalizada, cordial y profesional. Imprimimos tus ideas: diseño gráfico, impresión digital color y B&N, vinilos, stickers, cartelería, tarjetas, folletos, DTF textil y mucho más." />
+<link rel="icon" href="assets/logos-ec/Logo2.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  /* ===== Paleta tomada de la lista de precios ===== */
+  :root{
+    --purple-dark:#4E4E96;
+    --purple-deep:#3F3D7A;
+    --lilac:#D8BDE5;
+    --lilac-soft:#E8D4F0;
+    --green:#C5DC4F;
+    --green-bright:#B8D03F;
+    --cream:#FAF5DD;
+    --cream-soft:#FDF9E9;
+    --ink:#2E2D5A;
+    --white:#ffffff;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Montserrat',system-ui,-apple-system,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ===== Decoración (puntitos y blob como en el PDF) ===== */
+  .blob{position:absolute;pointer-events:none;z-index:0}
+  .dots{
+    position:absolute;pointer-events:none;z-index:0;opacity:.55;
+    background-image:radial-gradient(var(--lilac) 22%, transparent 24%);
+    background-size:14px 14px;
+  }
+  .dots-green{
+    position:absolute;pointer-events:none;z-index:0;opacity:.45;
+    background-image:radial-gradient(var(--green) 22%, transparent 24%);
+    background-size:14px 14px;
+  }
+
+  /* ===== NAV ===== */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--cream);
+    border-bottom:2px solid var(--lilac);
+  }
+  .nav-inner{
+    max-width:1200px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 28px;
+  }
+  .nav-logo{display:flex;align-items:center;gap:12px}
+  .nav-logo img{height:92px;width:auto;display:block}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{
+    font-weight:600;font-size:14px;
+    color:var(--purple-deep);
+    letter-spacing:.4px;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--green-bright)}
+  .nav-cta{
+    background:var(--green);
+    color:var(--purple-deep) !important;
+    padding:10px 20px;
+    border-radius:30px;
+    font-weight:800 !important;
+    font-size:13px !important;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    transition:transform .2s, background .2s;
+  }
+  .nav-cta:hover{background:var(--green-bright);transform:translateY(-2px);color:var(--purple-deep) !important}
+  .burger{display:none;background:none;border:0;cursor:pointer;font-size:28px;color:var(--purple-deep)}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    background:var(--purple-dark);
+    color:var(--white);
+    padding:90px 28px 110px;
+    overflow:hidden;
+  }
+  .hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:2}
+  .hero-eyebrow{
+    font-weight:700;letter-spacing:3px;font-size:13px;
+    color:var(--lilac-soft);margin-bottom:18px;text-transform:uppercase;
+  }
+  .hero h1{
+    font-size:clamp(48px, 9vw, 132px);
+    line-height:.95;
+    font-weight:900;
+    letter-spacing:-2px;
+    margin-bottom:24px;
+  }
+  .hero h1 .green{color:var(--green)}
+  .hero p.lead{
+    font-size:clamp(16px, 1.6vw, 20px);
+    max-width:640px;
+    color:var(--lilac-soft);
+    margin-bottom:36px;
+    font-weight:400;
+  }
+  .hero-cta-row{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;padding:16px 32px;border-radius:40px;
+    font-weight:800;font-size:14px;letter-spacing:.5px;text-transform:uppercase;
+    transition:transform .2s, box-shadow .2s, background .2s;
+    cursor:pointer;border:0;
+  }
+  .btn-primary{background:var(--green);color:var(--purple-deep)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.18);background:var(--green-bright)}
+  .btn-ghost{background:transparent;color:var(--white);border:2px solid var(--lilac)}
+  .btn-ghost:hover{background:var(--lilac);color:var(--purple-deep)}
+
+  /* Estrella decorativa estilo logo */
+  .hero-star{
+    position:absolute;
+    right:8%;top:18%;
+    width:140px;height:140px;
+    z-index:1;
+    color:var(--lilac);
+  }
+  .hero-blob{
+    position:absolute;right:-80px;top:-60px;
+    width:440px;height:440px;border-radius:50%;
+    background:var(--lilac);opacity:.35;
+    z-index:0;
+  }
+  .hero-dots{
+    right:6%;bottom:8%;
+    width:200px;height:140px;
+    transform:rotate(-12deg);
+  }
+
+  /* ===== SECCIONES ===== */
+  section{position:relative;padding:90px 28px}
+  .container{max-width:1200px;margin:0 auto;position:relative;z-index:2}
+  .eyebrow{
+    display:inline-block;
+    background:var(--lilac);
+    color:var(--purple-deep);
+    padding:6px 16px;
+    border-radius:20px;
+    font-weight:700;font-size:12px;letter-spacing:1.5px;
+    text-transform:uppercase;margin-bottom:16px;
+  }
+  h2.section-title{
+    font-size:clamp(36px, 5vw, 64px);
+    color:var(--purple-deep);
+    font-weight:900;
+    line-height:1;
+    margin-bottom:18px;
+    letter-spacing:-1px;
+  }
+  h2.section-title .green{color:var(--green-bright)}
+  .section-sub{
+    color:var(--purple-deep);
+    opacity:.78;
+    max-width:680px;
+    font-size:16px;
+    margin-bottom:54px;
+  }
+
+  /* ===== NOSOTROS ===== */
+  #nosotros{background:var(--cream)}
+  .about-grid{
+    display:grid;grid-template-columns:1.05fr 1fr;gap:54px;align-items:center;
+  }
+  .about-copy h2.section-title{margin-bottom:24px}
+  .about-copy p{
+    color:var(--purple-deep);
+    font-size:16.5px;
+    margin-bottom:16px;
+  }
+  .about-copy p strong{color:var(--purple-deep);font-weight:800}
+  .about-pillars{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;
+  }
+  .about-pill{
+    background:var(--lilac);
+    color:var(--purple-deep);
+    border-radius:14px;
+    padding:18px 16px;
+    text-align:center;
+    font-weight:800;font-size:13px;
+    letter-spacing:.5px;text-transform:uppercase;
+    line-height:1.25;
+  }
+  .about-pill svg{width:28px;height:28px;margin-bottom:8px;display:block;margin-inline:auto}
+  .about-visual{
+    position:relative;
+    background:var(--lilac-soft);
+    border-radius:28px;
+    padding:46px 32px;
+    overflow:hidden;
+    min-height:380px;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .about-visual .quote{
+    color:var(--purple-deep);
+    font-weight:800;
+    font-size:clamp(22px, 2.4vw, 32px);
+    line-height:1.15;
+    letter-spacing:-.5px;
+    position:relative;z-index:2;
+  }
+  .about-visual .quote .green{color:var(--green-bright)}
+  .about-visual .signature{
+    color:var(--purple-deep);
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-top:26px;
+    position:relative;z-index:2;
+  }
+  .about-visual .big-star{
+    position:absolute;right:-30px;bottom:-30px;
+    width:240px;height:240px;color:var(--green);
+    opacity:.55;
+  }
+  .about-visual .small-blob{
+    position:absolute;left:-40px;top:-40px;
+    width:160px;height:160px;border-radius:50%;
+    background:var(--lilac);opacity:.6;
+  }
+
+  /* ===== SERVICIOS ===== */
+  #servicios{background:var(--cream-soft);overflow:hidden}
+  #servicios .blob-bg{
+    position:absolute;right:-160px;top:60px;width:340px;height:340px;
+    border-radius:50%;background:var(--lilac);opacity:.35;
+  }
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+  }
+  /* Si la última fila queda con una sola card, la centramos */
+  .services-grid > article:nth-child(10):last-child{grid-column-start:2}
+  .service-card{
+    background:var(--green);
+    border-radius:20px;
+    padding:34px 26px;
+    color:var(--purple-deep);
+    transition:transform .25s, box-shadow .25s;
+    position:relative;
+    overflow:hidden;
+  }
+  .service-card:nth-child(2),
+  .service-card:nth-child(4),
+  .service-card:nth-child(6),
+  .service-card:nth-child(8),
+  .service-card:nth-child(10){
+    background:var(--lilac);
+  }
+  .service-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 32px rgba(78,78,150,.18);
+  }
+  .service-card .icon{
+    width:56px;height:56px;
+    margin-bottom:18px;
+    color:var(--purple-deep);
+  }
+  .service-card h3{
+    font-size:17px;
+    font-weight:900;
+    color:var(--purple-deep);
+    margin-bottom:10px;
+    letter-spacing:.3px;
+    text-transform:uppercase;
+    line-height:1.15;
+  }
+  .service-card p{
+    font-size:14px;
+    color:var(--purple-deep);
+    opacity:.92;
+    font-weight:500;
+    line-height:1.5;
+  }
+  .service-card ul{
+    list-style:none;margin-top:10px;
+  }
+  .service-card ul li{
+    font-size:13px;color:var(--purple-deep);font-weight:600;
+    padding:3px 0 3px 16px;position:relative;
+  }
+  .service-card ul li::before{
+    content:"";position:absolute;left:0;top:9px;width:8px;height:8px;
+    background:var(--purple-deep);border-radius:50%;opacity:.6;
+  }
+
+  /* ===== POR QUÉ NOSOTROS ===== */
+  #por-que{background:var(--purple-dark);color:var(--white);overflow:hidden}
+  #por-que .eyebrow{background:var(--green);color:var(--purple-deep)}
+  #por-que h2.section-title{color:var(--white)}
+  #por-que .section-sub{color:var(--lilac-soft);opacity:1}
+  .reasons{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+    position:relative;z-index:2;
+  }
+  .reason{
+    background:var(--cream);
+    color:var(--purple-deep);
+    border-radius:20px;
+    padding:34px 28px;
+    transition:transform .25s, box-shadow .25s;
+  }
+  .reason:hover{transform:translateY(-6px);box-shadow:0 18px 32px rgba(0,0,0,.2)}
+  .reason .num{
+    font-size:46px;font-weight:900;line-height:1;
+    color:var(--green-bright);
+    margin-bottom:8px;letter-spacing:-2px;
+  }
+  .reason h3{
+    font-size:20px;font-weight:900;
+    text-transform:uppercase;letter-spacing:.3px;
+    margin-bottom:10px;
+  }
+  .reason p{font-size:14.5px;color:var(--purple-deep);opacity:.85;line-height:1.55}
+  #por-que .por-que-dots{
+    left:-40px;top:30px;width:220px;height:160px;transform:rotate(8deg);
+  }
+  #por-que .por-que-dots-2{
+    right:-40px;bottom:30px;width:220px;height:160px;transform:rotate(-8deg);
+  }
+
+  /* ===== CLIENTES ===== */
+  #clientes{background:var(--cream)}
+  .clients-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:18px;
+  }
+  .client-card{
+    background:var(--white);
+    border-radius:18px;
+    aspect-ratio:1.4/1;
+    display:flex;align-items:center;justify-content:center;
+    padding:22px;
+    transition:transform .25s, box-shadow .25s;
+    border:2px solid var(--lilac-soft);
+  }
+  .client-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 12px 24px rgba(78,78,150,.18)}
+  .client-card img{
+    max-width:100%;max-height:100%;object-fit:contain;
+  }
+  .clients-quote{
+    margin-top:36px;
+    background:var(--lilac);
+    color:var(--purple-deep);
+    border-radius:22px;
+    padding:30px 36px;
+    font-size:17px;font-weight:600;line-height:1.55;
+    text-align:center;
+  }
+  .clients-quote strong{color:var(--purple-deep);font-weight:900;text-transform:uppercase;letter-spacing:.5px}
+
+  /* ===== FAQ ===== */
+  #faq{background:var(--cream-soft)}
+  .faq-list{display:flex;flex-direction:column;gap:14px;max-width:880px}
+  details.faq-item{
+    background:var(--white);
+    border-radius:16px;
+    padding:18px 22px;
+    border:2px solid var(--lilac-soft);
+    transition:border-color .2s, box-shadow .2s;
+  }
+  details.faq-item[open]{
+    border-color:var(--lilac);
+    box-shadow:0 10px 24px rgba(78,78,150,.08);
+  }
+  details.faq-item summary{
+    list-style:none;cursor:pointer;
+    color:var(--purple-deep);
+    font-weight:800;font-size:16px;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+  }
+  details.faq-item summary::-webkit-details-marker{display:none}
+  details.faq-item summary .plus{
+    flex:0 0 auto;width:28px;height:28px;border-radius:50%;
+    background:var(--green);color:var(--purple-deep);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:18px;line-height:1;
+    transition:transform .25s, background .25s;
+  }
+  details.faq-item[open] summary .plus{transform:rotate(45deg);background:var(--lilac)}
+  details.faq-item p{
+    color:var(--purple-deep);opacity:.85;
+    font-size:15px;font-weight:500;line-height:1.6;
+    margin-top:14px;
+  }
+
+  /* ===== CONTACTO ===== */
+  #contacto{background:var(--purple-dark);color:var(--white);overflow:hidden}
+  #contacto .eyebrow{background:var(--green);color:var(--purple-deep)}
+  #contacto h2.section-title{color:var(--white)}
+  #contacto h2.section-title .green{color:var(--green)}
+  #contacto .section-sub{color:var(--lilac-soft);opacity:1}
+  .contact-grid{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start;
+  }
+  .contact-card{
+    background:var(--cream);
+    border-radius:22px;
+    padding:36px;
+    color:var(--purple-deep);
+  }
+  .contact-card h3{
+    font-size:24px;font-weight:900;margin-bottom:8px;letter-spacing:-.3px;
+  }
+  .contact-card .lead{
+    font-size:14px;color:var(--purple-deep);opacity:.8;margin-bottom:22px;
+  }
+  .contact-item{
+    display:flex;align-items:flex-start;gap:14px;
+    padding:14px 0;
+    border-bottom:1px dashed rgba(63,61,122,.25);
+    font-weight:600;
+  }
+  .contact-item:last-child{border-bottom:0}
+  .contact-item svg{flex:0 0 auto;color:var(--purple-deep);margin-top:2px}
+  .contact-item a{color:var(--purple-deep);transition:color .2s;border-bottom:2px solid transparent}
+  .contact-item a:hover{color:var(--green-bright);border-bottom-color:var(--green-bright)}
+  .contact-form{
+    background:var(--green);
+    border-radius:22px;
+    padding:36px;
+  }
+  .contact-form h3{
+    font-size:24px;font-weight:900;color:var(--purple-deep);margin-bottom:8px;letter-spacing:-.3px;
+  }
+  .contact-form .lead{
+    font-size:14px;color:var(--purple-deep);opacity:.8;margin-bottom:6px;
+  }
+  .contact-form label{
+    display:block;font-size:12px;font-weight:800;color:var(--purple-deep);
+    text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;margin-top:14px;
+  }
+  .contact-form input,
+  .contact-form textarea{
+    width:100%;padding:12px 14px;border:0;border-radius:10px;
+    background:var(--cream-soft);font-family:inherit;font-size:14px;color:var(--purple-deep);
+    font-weight:600;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus{outline:2px solid var(--purple-deep)}
+  .contact-form textarea{min-height:110px;resize:vertical}
+  .contact-form button{
+    margin-top:20px;width:100%;padding:14px;border:0;cursor:pointer;
+    background:var(--purple-dark);color:var(--white);
+    border-radius:30px;font-weight:800;letter-spacing:1px;font-size:14px;
+    text-transform:uppercase;transition:background .2s, transform .2s;
+  }
+  .contact-form button:hover{background:var(--purple-deep);transform:translateY(-2px)}
+  .contact-form.mail-only{display:flex;flex-direction:column;justify-content:center;min-height:100%}
+  .contact-form .mail-copy{
+    font-size:14.5px;color:var(--purple-deep);font-weight:500;line-height:1.6;margin-bottom:16px;
+  }
+  .contact-form .mail-copy strong{font-weight:800}
+  .contact-form .mail-button{
+    display:inline-block;text-align:center;
+    margin-top:14px;padding:16px 22px;border:0;cursor:pointer;
+    background:var(--purple-dark);color:var(--white);
+    border-radius:30px;font-weight:800;letter-spacing:.6px;font-size:14px;
+    text-transform:uppercase;transition:background .2s, transform .2s;
+    word-break:break-word;
+  }
+  .contact-form .mail-button:hover{background:var(--purple-deep);transform:translateY(-2px);color:var(--white)}
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--purple-deep);
+    color:var(--white);
+    padding:50px 28px 30px;
+    text-align:center;
+    font-size:14px;
+  }
+  footer a{color:var(--green);transition:color .2s}
+  footer a:hover{color:var(--green-bright)}
+  footer .footer-logo{height:54px;margin-bottom:16px}
+  footer .footer-tag{
+    display:inline-block;background:var(--green);color:var(--purple-deep);
+    padding:5px 14px;border-radius:14px;font-weight:800;
+    font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px;
+  }
+  footer .footer-row{
+    display:flex;gap:24px;justify-content:center;flex-wrap:wrap;
+    margin:14px 0 22px;
+  }
+  footer .footer-row a{
+    color:var(--lilac-soft);font-weight:600;
+    text-transform:uppercase;font-size:12px;letter-spacing:.5px;
+  }
+  footer .footer-row a:hover{color:var(--green)}
+  footer .copyright{opacity:.6;font-size:12px;margin-top:14px}
+
+  /* ===== Responsive ===== */
+  @media (max-width: 980px){
+    .nav-links{display:none;position:absolute;top:74px;left:0;right:0;background:var(--cream);flex-direction:column;padding:16px 28px;gap:18px;border-bottom:2px solid var(--lilac)}
+    .nav-links.open{display:flex}
+    .burger{display:block}
+    .services-grid{grid-template-columns:repeat(2, 1fr)}
+    .reasons{grid-template-columns:1fr;gap:16px}
+    .clients-grid{grid-template-columns:repeat(3, 1fr)}
+    .contact-grid{grid-template-columns:1fr}
+    .about-grid{grid-template-columns:1fr;gap:32px}
+    .hero-star{width:90px;height:90px;right:5%;top:6%}
+    .hero-blob{width:280px;height:280px}
+  }
+  @media (max-width: 560px){
+    .services-grid{grid-template-columns:1fr}
+    .clients-grid{grid-template-columns:repeat(2, 1fr)}
+    .about-pillars{grid-template-columns:1fr 1fr}
+    section{padding:64px 22px}
+    .hero{padding:64px 22px 80px}
+    .contact-card,.contact-form{padding:28px 22px}
+  }
+</style>
 </head>
-<body>
-  <div class="card">
-    <img src="logo.png" alt="Logo Estudio Color">
-    <h1>Estamos trabajando en algo nuevo</h1>
-    <p>Muy pronto vas a poder descubrir el nuevo <strong>Estudio Color</strong>.</p>
-    <p>¿Necesitás asistencia? <br>
-    Escribinos a <a href="mailto:hola@estudiocolor.com.ar">hola@estudiocolor.com.ar</a></p>
+<body id="top">
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo" aria-label="Estudio Color">
+      <img src="assets/logos-ec/logo-estudiocolor.png" alt="Estudio Color" />
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Menú principal">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#por-que">Por qué nosotros</a>
+      <a href="#faq">Preguntas</a>
+      <a href="mailto:hola@estudiocolor.com.ar?subject=Pedido%20de%20presupuesto" class="nav-cta">Pedir presupuesto</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">☰</button>
   </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="dots hero-dots"></div>
+  <svg class="hero-star" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M50 5 L58 38 L92 42 L64 60 L74 92 L50 72 L26 92 L36 60 L8 42 L42 38 Z" fill="currentColor"/>
+  </svg>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Diseño Gráfico + Impresión Digital · Castelar Sur</p>
+    <h1>Imprimimos<br/><span class="green">tus ideas.</span></h1>
+    <p class="lead">Somos una empresa familiar dedicada al diseño gráfico, servicios digitales de impresión y terminaciones de calidad para tu proyecto. Te asesoramos con atención personalizada, cordial y profesional para que tus ideas tomen color.</p>
+    <div class="hero-cta-row">
+      <a href="mailto:hola@estudiocolor.com.ar?subject=Pedido%20de%20presupuesto" class="btn btn-primary">Pedir presupuesto</a>
+      <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOSOTROS ============ -->
+<section id="nosotros">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-copy">
+        <span class="eyebrow">Nosotros</span>
+        <h2 class="section-title">Una gráfica <span class="green">familiar,</span> para tu marca.</h2>
+        <p>En <strong>Estudio Color</strong> somos una empresa familiar con base en Castelar Sur, dedicada hace años a la impresión digital y al diseño gráfico. Nos eligen comercios, profesionales y emprendedores que buscan cuidar cada detalle de su marca.</p>
+        <p>Trabajamos cada pedido como si fuera nuestro: <strong>atención personalizada</strong>, trato <strong>cordial</strong> y un acabado <strong>profesional</strong> en cada trabajo. Te acompañamos desde la idea hasta la entrega final, asesorándote en papeles, terminaciones, formatos y plazos.</p>
+
+        <div class="about-pillars">
+          <div class="about-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            Atención personalizada
+          </div>
+          <div class="about-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Calidad profesional
+          </div>
+          <div class="about-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+            Compromiso real
+          </div>
+        </div>
+      </div>
+
+      <div class="about-visual" aria-hidden="true">
+        <div class="small-blob"></div>
+        <svg class="big-star" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 5 L58 38 L92 42 L64 60 L74 92 L50 72 L26 92 L36 60 L8 42 L42 38 Z" fill="currentColor"/>
+        </svg>
+        <p class="quote">“Te asesoramos para que tus ideas <span class="green">tomen color.</span>”</p>
+        <p class="signature">— Estudio Color · Buenos Aires 699, Castelar Sur</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section id="servicios">
+  <div class="blob-bg"></div>
+  <div class="container">
+    <span class="eyebrow">Lo que hacemos</span>
+    <h2 class="section-title">Tenemos todo esto<br/><span class="green">y más para ofrecerte.</span></h2>
+    <p class="section-sub">Desde una tarjeta personal hasta una cartelería completa para tu local. Diseño, impresión y terminaciones — todo en un mismo lugar.</p>
+
+    <div class="services-grid">
+
+      <!-- 1. Impresiones color y B&N -->
+      <article class="service-card">
+        <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="14" y="10" width="36" height="44" rx="3"/>
+          <line x1="22" y1="22" x2="42" y2="22"/>
+          <line x1="22" y1="30" x2="42" y2="30"/>
+          <line x1="22" y1="38" x2="42" y2="38"/>
+          <line x1="22" y1="46" x2="36" y2="46"/>
+        </svg>
+        <h3>Impresiones color y B&amp;N</h3>
+        <p>Láser e Inkjet en distintos papeles y gramajes. Apuntes, CV's, fotoduplicación y offset.</p>
+        <ul>
+          <li>Color y blanco y negro</li>
+          <li>A4, oficio, A3 y A3+</li>
+          <li>Opalinas, ilustración, kraft y más</li>
+        </ul>
+      </article>
+
+      <!-- 2. Gran formato -->
+      <article class="service-card">
+        <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="6" y="14" width="52" height="32" rx="3"/>
+          <line x1="12" y1="22" x2="22" y2="22"/>
+          <line x1="12" y1="30" x2="34" y2="30"/>
+          <line x1="12" y1="38" x2="28" y2="38"/>
+          <path d="M40 22 L52 38"/>
+        </svg>
+        <h3>Gran formato y planos</h3>
+        <p>Ploteo de planos técnicos, posters, banners y lonas en alta definición para eventos y comunicación.</p>
+        <ul>
+          <li>Planos arquitectónicos</li>
+          <li>Posters y banners</li>
+          <li>Lonas para vía pública</li>
+        </ul>
+      </article>
+
+      <!-- 3. Tarjetas personales -->
+      <article class="service-card">
+        <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="8" y="20" width="48" height="28" rx="3"/>
+          <line x1="16" y1="32" x2="36" y2="32"/>
+          <line x1="16" y1="38" x2="30" y2="38"/>
+          <circle cx="46" cy="35" r="4"/>
+        </svg>
+        <h3>Tarjetas personales</h3>
+        <p>Diferentes papeles, acabados y terminaciones para que tu tarjeta destaque en cada contacto.</p>
+        <ul>
+          <li>Opalinas e ilustración</li>
+          <li>Plastificadas o laminadas</li>
+          <li>Puntas redondeadas</li>
+        </ul>
+      </article>
+
+      <!-- 4. Folletos · Comandas · Talonarios -->
+      <article class="service-card">
+        <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="16" y="6" width="32" height="50" rx="2"/>
+          <line x1="16" y1="18" x2="48" y2="18"/>
+          <line x1="22" y1="28" x2="42" y2="28"/>
+          <line x1="22" y1="36" x2="42" y2="36"/>
+          <line x1="22" y1="44" x2="36" y2="44"/>
+        </svg>
+        <h3>Folletos · Comandas · Talonarios</h3>
+        <p>Todo para tu negocio: numerados, abrochados, anillados y plegados con la mejor calidad.</p>
+        <ul>
+          <li>Folletos plegados</li>
+          <li>Talonarios numerados</li>
+          <li>Comandas para gastronomía</li>
+        </ul>
+      </article>
+
+      <!-- 5. Vinilos / DTF UV / Stickers -->
+      <article class="service-card">
+        <svg class="icon" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+          <circle cx="32" cy="32" r="24" opacity=".22"/>
+          <path d="M32 10 l3.7 11.4h12l-9.7 7 3.7 11.4L32 32.7l-9.7 7 3.7-11.4-9.7-7h12z"/>
+        </svg>
+        <h3>Vinilos · DTF UV · Stickers</h3>
+        <p>Cortes en vinilo, stickers troquelados, etiquetas de producto y vinilos decorativos para vidriera.</p>
+        <ul>
+          <li>Stickers troquelados</li>
+          <li>Etiquetas y cierra-bolsa</li>
+          <li>Vinilos de corte y deco</li>
+        </ul>
+      </article>
+
+      <!-- 6. Cartelería y señalización -->
+      <article class="service-card">
+        <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="10" y="14" width="44" height="22" rx="2"/>
+          <line x1="32" y1="36" x2="32" y2="50"/>
+          <line x1="22" y1="50" x2="42" y2="50"/>
+          <line x1="18" y1="22" x2="46" y2="22"/>
+          <line x1="18" y1="28" x2="40" y2="28"/>
+        </svg>
+        <h3>Cartelería y señalización</h3>
+        <p>Montados en PVC, polyfan, lonas y cartelería liviana para exhibiciones, eventos y locales.</p>
+        <ul>
+          <li>Montajes en PVC</li>
+          <li>Polyfan ultraliviano</li>
+          <li>Cartelería para vidriera</li>
+        </ul>
+      </article>
+
+      <!-- 7. Textil: DTF, tags y vinilo -->
+      <article class="service-card">
+        <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 18 l8 -6 h20 l8 6 -6 6 -4 -3 v33 h-16 v-33 l-4 3 z"/>
+        </svg>
+        <h3>Textil · DTF · Tags</h3>
+        <p>Personalizá remeras, gorras y prendas con DTF textil, vinilo termotransferible y tags perforados.</p>
+        <ul>
+          <li>DTF para textil</li>
+          <li>Vinilo termotransferible</li>
+          <li>Tags perforados</li>
+        </ul>
+      </article>
+
+      <!-- 8. Terminaciones -->
+      <article class="service-card">
+        <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M10 24 h44 v22 a4 4 0 0 1 -4 4 h-36 a4 4 0 0 1 -4 -4 z"/>
+          <path d="M14 24 V14 h36 v10"/>
+          <line x1="22" y1="34" x2="42" y2="34"/>
+          <line x1="22" y1="42" x2="42" y2="42"/>
+        </svg>
+        <h3>Terminaciones</h3>
+        <p>El detalle final que hace la diferencia. Cuidamos la presentación de cada trabajo impreso.</p>
+        <ul>
+          <li>Plastificado y laminado</li>
+          <li>Anillado y abrochado</li>
+          <li>Refilado y troquelado</li>
+        </ul>
+      </article>
+
+      <!-- 9. Diseño gráfico -->
+      <article class="service-card">
+        <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M44 8 l12 12 -32 32 -12 0 0 -12 z"/>
+          <line x1="40" y1="12" x2="52" y2="24"/>
+        </svg>
+        <h3>Diseño gráfico</h3>
+        <p>Diseño profesional para potenciar la identidad de tu marca y mejorar la comunicación de tus productos o servicios.</p>
+        <ul>
+          <li>Logos e identidad de marca</li>
+          <li>Papelería corporativa</li>
+          <li>Folletos, afiches y posters</li>
+          <li>Etiquetas y packaging</li>
+          <li>Cartelería y vidrieras</li>
+        </ul>
+      </article>
+
+      <!-- 10. Varios: sellos, imanes y otros -->
+      <article class="service-card">
+        <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="14" y="10" width="36" height="28" rx="3"/>
+          <path d="M22 38 v10 h20 v-10"/>
+          <line x1="26" y1="20" x2="38" y2="20"/>
+          <line x1="26" y1="28" x2="38" y2="28"/>
+        </svg>
+        <h3>Sellos, imanes y otros</h3>
+        <p>Productos varios y a medida para complementar tu marca o tu día a día con piezas únicas.</p>
+        <ul>
+          <li>Sellos automáticos y de goma</li>
+          <li>Imanes personalizados</li>
+          <li>Carnets plastificados</li>
+          <li>Packaging a medida</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ POR QUÉ NOSOTROS ============ -->
+<section id="por-que">
+  <div class="dots por-que-dots"></div>
+  <div class="dots-green por-que-dots-2"></div>
+  <div class="container">
+    <span class="eyebrow">Por qué nosotros</span>
+    <h2 class="section-title">Tres motivos<br/><span style="color:var(--green)">para elegirnos.</span></h2>
+    <p class="section-sub">Lo que hacemos lo hacemos bien — y lo hacemos cerca tuyo.</p>
+
+    <div class="reasons">
+      <div class="reason">
+        <div class="num">01</div>
+        <h3>Atención personalizada</h3>
+        <p>Te recibimos en el local y te acompañamos paso a paso. Cada pedido pasa por nuestras manos: nada se delega ni se automatiza.</p>
+      </div>
+      <div class="reason">
+        <div class="num">02</div>
+        <h3>Calidad profesional</h3>
+        <p>Tecnología de última generación en impresión láser y a tinta, con papeles seleccionados y terminaciones cuidadas trabajo por trabajo.</p>
+      </div>
+      <div class="reason">
+        <div class="num">03</div>
+        <h3>Compromiso familiar</h3>
+        <p>Somos un emprendimiento familiar: nos comprometemos con cada proyecto como si fuera nuestro y cumplimos los plazos pactados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLIENTES ============ -->
+<section id="clientes">
+  <div class="container">
+    <span class="eyebrow">Confían en nosotros</span>
+    <h2 class="section-title">Marcas que <span class="green">eligen</span> Estudio Color.</h2>
+    <p class="section-sub">Comercios, profesionales y emprendedores nos eligen para cuidar su comunicación visual y su papelería.</p>
+
+    <div class="clients-grid">
+      <div class="client-card"><img src="assets/logos-clientes/client-1.png" alt="Cliente" loading="lazy" /></div>
+      <div class="client-card"><img src="assets/logos-clientes/client-2.png" alt="Cliente" loading="lazy" /></div>
+      <div class="client-card"><img src="assets/logos-clientes/client-3.png" alt="Cliente" loading="lazy" /></div>
+      <div class="client-card"><img src="assets/logos-clientes/client-4.png" alt="Cliente" loading="lazy" /></div>
+      <div class="client-card"><img src="assets/logos-clientes/client-5.png" alt="Cliente" loading="lazy" /></div>
+      <div class="client-card"><img src="assets/logos-clientes/client-6.png" alt="Cliente" loading="lazy" /></div>
+    </div>
+
+    <div class="clients-quote">
+      <strong>Consultanos</strong> y te asesoramos para que tus ideas tomen color. Trabajamos con cada cliente para encontrar la mejor combinación de papel, terminación y formato.
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="container">
+    <span class="eyebrow">Preguntas frecuentes</span>
+    <h2 class="section-title">Algunas dudas <span class="green">comunes.</span></h2>
+    <p class="section-sub">Si no encontrás lo que buscás, escribinos por mail o pasá por el local — te respondemos a la brevedad.</p>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>¿Cómo les envío mis trabajos? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Podés enviarnos los archivos de tu pedido a nuestro mail. Eso nos permite hacer un seguimiento ordenado y mantener la calidad de cada trabajo. También podés acercarte al local en Buenos Aires 699, Castelar Sur.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cuánto demora un pedido? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Una vez aceptada la cotización, te enviamos un tiempo estimado de realización en función del trabajo, los materiales y la cantidad. Siempre tratamos de cumplir los plazos pactados.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cómo me entero cuando está listo? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Te avisamos por mail apenas el trabajo está terminado y listo para retirar. Estate atento a tu correo, incluido el spam.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Dónde se retiran los pedidos? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Los pedidos se retiran por nuestro local en Buenos Aires 699, Castelar Sur. Para retirar, esperá a recibir nuestro aviso por mail confirmando que el trabajo está terminado.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cuál es el horario del local? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Atendemos de lunes a viernes de 9:00 a 18:00 hs. Para retiros, igual te pedimos esperar nuestro aviso por mail antes de pasar.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Hacen diseño además de imprimir? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Sí. Diseñamos logos, papelería comercial, etiquetas, afiches, tarjetas, folletos, packaging y material corporativo. Te asesoramos en cada pieza para que tu marca se vea coherente y profesional. (No realizamos diseño para redes sociales.)</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section id="contacto">
+  <div class="container">
+    <span class="eyebrow">Hablemos</span>
+    <h2 class="section-title">Pedinos un <span class="green">presupuesto.</span></h2>
+    <p class="section-sub">Tomamos los pedidos por mail para garantizar la calidad y el seguimiento de cada trabajo. Te respondemos a la brevedad de lunes a viernes de 9 a 18 hs.</p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Estudio Color</h3>
+        <p class="lead">Diseño gráfico e impresión digital — atención personalizada.</p>
+
+        <div class="contact-item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Buenos Aires 699 · Castelar Sur · Pcia. de Buenos Aires (CP 1712)</span>
+        </div>
+        <div class="contact-item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:hola@estudiocolor.com.ar">hola@estudiocolor.com.ar</a>
+        </div>
+        <div class="contact-item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <a href="https://www.instagram.com/estudiocolor/" target="_blank" rel="noopener">@estudiocolor</a>
+        </div>
+        <div class="contact-item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          <span>Lunes a Viernes · 9:00 a 18:00 hs</span>
+        </div>
+      </div>
+
+      <div class="contact-form mail-only">
+        <h3>Pedidos por mail</h3>
+        <p class="mail-copy">Por una cuestión de calidad y organización, gestionamos todas las consultas y pedidos <strong>exclusivamente por correo electrónico</strong>. Esta modalidad nos permite registrar cada solicitud, hacer un seguimiento detallado del trabajo, respetar los plazos pactados y garantizar que cualquier integrante de nuestro equipo pueda atender tu pedido con la información completa a la vista.</p>
+        <p class="mail-copy">Escribinos contándonos qué necesitás —cantidad, tamaño, papel, fecha de entrega y cualquier referencia visual que tengas— y te respondemos a la brevedad con la cotización.</p>
+        <a href="mailto:hola@estudiocolor.com.ar?subject=Pedido%20de%20presupuesto&amp;body=Hola%2C%20quisiera%20pedir%20un%20presupuesto.%0A%0A-%20Trabajo%3A%20%0A-%20Cantidad%3A%20%0A-%20Tama%C3%B1o%3A%20%0A-%20Papel%2Fmaterial%3A%20%0A-%20Fecha%20deseada%3A%20%0A%0AGracias." class="mail-button">Escribinos a hola@estudiocolor.com.ar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <img src="assets/logos-ec/logo-estudiocolor.png" class="footer-logo" alt="Estudio Color" />
+  <div><span class="footer-tag">Imprimimos tus ideas</span></div>
+  <div class="footer-row">
+    <a href="#nosotros">Nosotros</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#por-que">Por qué nosotros</a>
+    <a href="#faq">Preguntas</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <p>Buenos Aires 699 · Castelar Sur · Pcia. de Buenos Aires · <a href="mailto:hola@estudiocolor.com.ar">hola@estudiocolor.com.ar</a> · <a href="https://www.instagram.com/estudiocolor/" target="_blank" rel="noopener">@estudiocolor</a></p>
+  <p class="copyright">© <span id="y"></span> Estudio Color · Diseño Gráfico + Impresión Digital · Todos los derechos reservados.</p>
+</footer>
+
+<script>
+  // Año dinámico
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Burger menu
+  const burger = document.getElementById('burger');
+  const links = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    const isOpen = links.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen);
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
 </body>
 </html>
